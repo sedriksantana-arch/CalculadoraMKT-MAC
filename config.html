@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Configurar Taxas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="win app" id="cfg">
+      <div class="bd" style="padding-bottom:0"><div class="g"><button class="b on" data-tab="fees">Taxas</button><button class="b" data-tab="about">Sobre o App</button></div></div>
+<div id="tab-fees"><div class="bd">
+        <div class="g">
+          <div><label for="s-c1">Comissão Própria %</label><input id="s-c1" type="number" step="0.01" value="12"></div>
+          <div><label for="s-c2">Comissão iFood %</label><input id="s-c2" type="number" step="0.01" value="23"></div>
+        </div>
+        <div class="g">
+          <div><label for="s-pay">Pgto online %</label><input id="s-pay" type="number" step="0.01" value="3.2"></div>
+          <div><label for="s-ant">Antecipação %</label><input id="s-ant" type="number" step="0.01" value="1.49"></div>
+        </div>
+        <div class="g">
+          <div><label for="s-camp">Campanha R$</label><input id="s-camp" type="number" step="0.01" value="5"></div>
+          <div><label for="s-menu">Taxa cardápio %</label><input id="s-menu" type="number" step="0.01" value="0"></div>
+        </div>
+      </div>
+      <div class="ft">
+        <button class="b" id="btn-reset">Restaurar padrão</button>
+        <button class="b on" id="btn-save"><span>Salvar</span></button>
+      </div></div>
+<div id="tab-about" hidden>
+  <div class="bd">
+    <div class="abh"><svg width="34" height="34" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 43 14v20L24 45 5 34V14z" fill="rgba(255,122,26,.08)" stroke="#ff7a1a" stroke-width="3" stroke-linejoin="round"/><path d="M24 14v20M14 24h20" stroke="#ff7a1a" stroke-width="5" stroke-linecap="round"/></svg><div><b>Calculadora MKT+</b><small>by Sedrik O Santana</small></div></div>
+    <div class="abl" id="ab-rows"></div>
+    <p class="abn">Seus dados e taxas ficam salvos somente neste dispositivo. Os valores calculados são estimativas: confirme as taxas vigentes do iFood antes de definir preços.</p>
+  </div>
+  <div class="ft"><button class="b" id="btn-info">Copiar informações</button><button class="b on" id="btn-close2">Fechar</button></div>
+</div>
+    </div>
+
+    
+<script src="core.js"></script><script src="config.js"></script><script src="about.js"></script>
+</body></html>

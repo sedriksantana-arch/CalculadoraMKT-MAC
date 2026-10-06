@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>MKT+ Widget</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+html,body{background:none!important;height:auto;overflow:hidden;margin:0}
+.tile{--wa:.78;position:relative;width:260px;padding:14px;border-radius:26px;background:rgba(12,20,34,var(--wa));border:1px solid rgba(255,255,255,.12);display:flex;flex-direction:column;gap:10px;user-select:none;font-family:Inter,system-ui,"Segoe UI",sans-serif;color:var(--tx)}
+.tile .lb{margin:0 0 5px 2px}
+.fld{display:flex;align-items:center;height:42px;background:rgba(0,0,0,.30);border:1px solid var(--bd);border-radius:14px;padding:0 6px 0 12px;gap:6px;transition:border-color .15s,box-shadow .15s}
+.fld:focus-within{border-color:var(--or);box-shadow:0 0 0 3px rgba(255,122,26,.14)}
+.fld .rs{color:var(--or);font-weight:600;font-size:13px}
+.fld input{flex:1;min-width:0;width:100%;height:38px;border:0!important;background:none;box-shadow:none!important;padding:0;font:600 18px Inter,sans-serif;color:var(--tx);outline:0}
+.lux,.cpy{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:center;color:var(--dm);cursor:pointer;flex:none}
+.lux{width:30px;height:30px;border-radius:10px}
+.lux:hover,.cpy:hover{color:var(--tx);background:rgba(255,255,255,.08)}
+body.lux .lux{color:var(--or);background:rgba(255,122,26,.16);box-shadow:0 0 12px rgba(255,122,26,.3)}
+.pbox{position:relative;text-align:center;padding:12px 8px 10px;border-radius:18px;border:1px solid rgba(255,122,26,.3);background:radial-gradient(ellipse 80% 80% at 50% 0,rgba(255,122,26,.18),transparent 75%),rgba(255,122,26,.05)}
+.pt{font-size:9.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.pn{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--or)}
+.pn small{font-size:.5em;font-weight:600;opacity:.75}
+.cpy{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:8px}
+.cpy.ok{color:var(--pos)}
+.hint2{position:absolute;left:50%;top:-9px;transform:translateX(-50%);padding:3px 10px;border-radius:99px;background:#1a1410;border:1px solid var(--or);color:var(--or);font-size:10px;font-weight:600;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+body.lux .hint2{opacity:1}
+.tgs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.tg{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:3px;padding:9px 8px 8px;border-radius:15px;background:rgba(255,255,255,.05);border:1px solid var(--bd);color:var(--dm);min-height:78px;transition:all .15s}
+.tg i{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--dm);margin-bottom:2px}
+.tg .nm{font-size:10.5px;font-weight:600;line-height:1.15}
+.tg small{margin-top:auto;font-size:9.5px;opacity:.8}
+.tg.on{color:var(--tx);background:rgba(255,122,26,.12);border-color:rgba(255,122,26,.5)}
+.tg.on i{background:var(--or);border-color:var(--or);box-shadow:0 0 8px var(--or)}
+.tg.on small{color:var(--or);opacity:1}
+.tg:disabled{opacity:.35;cursor:default}
+body{padding:10px;width:280px;min-height:0!important;height:auto!important}
+.tile{-webkit-app-region:drag}
+.tile input,.tile button,.fld{-webkit-app-region:no-drag}
+body.lux .tile{-webkit-app-region:no-drag}
+body.solid{padding:0;width:260px;background:#0b1320!important}
+body.solid .tile{border-radius:0;border:0;background:rgb(12,20,34)}
+</style></head>
+<body>
+<div class="tile" id="tile">
+  <div>
+    <div class="lb">Valor do produto</div>
+    <div class="fld"><span class="rs">R$</span><input id="w-net" type="number" step="0.01" aria-label="Valor do produto">
+      <button class="lux" id="w-lux" title="Ajustar transparência do fundo (depois role o mouse)" aria-label="Ajustar transparência do fundo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg></button>
+    </div>
+  </div>
+  <div class="pbox">
+    <div class="hint2" id="w-hint"></div>
+    <button class="cpy" id="w-copy" title="Copiar preço" aria-label="Copiar preço"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg></button>
+    <div class="pt">Preço de venda</div>
+    <div class="pn" id="w-price"></div>
+  </div>
+  <div class="tgs">
+    <button class="tg on" id="t-plan" title="Trocar entrega própria / iFood"><i></i><span class="nm" id="t-plan-n"></span><small id="t-plan-v"></small></button>
+    <button class="tg" id="t-camp" title="Campanha inteligente"><i></i><span class="nm">Campanha inteligente</span><small id="t-camp-v"></small></button>
+    <button class="tg" id="t-emb" title="Frete embutido"><i></i><span class="nm">Frete embutido</span><small id="t-emb-v"></small></button>
+  </div>
+</div>
+<script src="core.js"></script><script src="widget.js"></script>
+</body></html>
